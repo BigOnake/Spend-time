@@ -1,9 +1,11 @@
-package com.example.todourmat;
+package com.example.todourmat.presentation.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+
+import com.example.todourmat.R;
 
 public class MainActivity extends AppCompatActivity {
 
