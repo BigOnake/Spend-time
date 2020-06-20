@@ -14,10 +14,13 @@ import android.widget.Button;
 
 import com.example.todourmat.presentation.main.MainActivity;
 import com.example.todourmat.R;
+import com.google.android.material.tabs.TabLayout;
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 public class IntroActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
+    private DotsIndicator dotsIndicator;
     private Button btnSkip, btnNext;
 
     @Override
@@ -25,8 +28,11 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
+        dotsIndicator = findViewById(R.id.dots_indicator);
         viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(new IntroPagerAdapter(getSupportFragmentManager()));
+        dotsIndicator.setViewPager(viewPager);
+
         btnSkip = findViewById(R.id.btn_skip);
         btnNext = findViewById(R.id.btn_next);
 
@@ -43,14 +49,7 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
-                /*switch (viewPager.getCurrentItem()) {
-                    case 0:
-                        viewPager.setCurrentItem(1);
-                        break;
-                    case 1:
-                        viewPager.setCurrentItem(2);
-                        break;
-                }*/
+
             }
         });
 
@@ -77,9 +76,9 @@ public class IntroActivity extends AppCompatActivity {
     }
 
 
-
-
     public class IntroPagerAdapter extends FragmentPagerAdapter {
+
+        public static final int PAGES_COUNT = 3;
 
         public IntroPagerAdapter(@NonNull FragmentManager fm) {
             super(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
