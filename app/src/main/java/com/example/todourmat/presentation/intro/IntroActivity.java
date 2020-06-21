@@ -7,7 +7,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +41,7 @@ public class IntroActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveIsShown();
                 Intent intent = new Intent(IntroActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -95,5 +98,10 @@ public class IntroActivity extends AppCompatActivity {
         public int getCount() {
             return 3;
         }
+    }
+
+    private void saveIsShown(){
+        SharedPreferences preferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
+        preferences.edit().putBoolean("isShown", true).apply();
     }
 }
