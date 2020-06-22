@@ -62,7 +62,7 @@
             android:text="Price"
             app:layout_constraintBottom_toTopOf="@id/price_undrln"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/participants"/>
+            app:layout_constraintRight_toLeftOf="@id/participants" />
 
         <TextView
             android:id="@+id/price_undrln"
@@ -71,54 +71,70 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Price"
-            app:layout_constraintStart_toStartOf="@id/price"
-            app:layout_constraintEnd_toEndOf="@id/price"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/price"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/participants_undrln"/>
+            app:layout_constraintRight_toLeftOf="@id/participants_undrln"
+            app:layout_constraintStart_toStartOf="@id/price" />
 
         <!--app:layout_constraintStart_toStartOf="@id/price"
                 app:layout_constraintEnd_toEndOf="@id/price"-->
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/participants"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:layout_constraintBottom_toTopOf="@id/participants_undrln"
-            app:layout_constraintRight_toLeftOf="@id/access"
-            app:layout_constraintLeft_toRightOf="@id/price">
+            app:layout_constraintLeft_toRightOf="@id/price"
+            app:layout_constraintRight_toLeftOf="@id/access">
 
             <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_weight="1"
-
-                android:background="@drawable/lt_icons"
-                android:src="@drawable/ic_person" />
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_weight="1"
-
-                android:background="@drawable/lt_icons"
-                android:src="@drawable/ic_group" />
-
-            <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_weight="1"
-
-                android:background="@drawable/lt_icons"
-                android:src="@drawable/ic_person_add" />
-
-            <ImageView
+                android:id="@+id/person"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_weight="1"
                 android:background="@drawable/lt_icons"
-                android:src="@drawable/ic_group_add" />
-        </LinearLayout>
+                android:src="@drawable/ic_person"
+                app:layout_constraintLeft_toLeftOf="@id/participants"
+
+                app:layout_constraintLeft_toRightOf="@id/group"
+                app:layout_constraintTop_toTopOf="@id/participants" />
+
+            <ImageView
+                android:id="@+id/group"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_weight="1"
+                android:background="@drawable/lt_icons"
+                android:src="@drawable/ic_group"
+                app:layout_constraintLeft_toRightOf="@id/person"
+
+                app:layout_constraintRight_toLeftOf="@id/person_add"
+                app:layout_constraintTop_toTopOf="@id/participants" />
+
+            <ImageView
+                android:id="@+id/person_add"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_weight="1"
+                android:background="@drawable/lt_icons"
+                android:src="@drawable/ic_person_add"
+                app:layout_constraintLeft_toRightOf="@id/group"
+
+                app:layout_constraintRight_toLeftOf="@id/group_add"
+                app:layout_constraintTop_toTopOf="@id/participants" />
+
+            <ImageView
+                android:id="@+id/group_add"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_weight="1"
+                android:background="@drawable/lt_icons"
+                android:src="@drawable/ic_group_add"
+                app:layout_constraintLeft_toRightOf="@id/person_add"
+                app:layout_constraintRight_toRightOf="@id/participants"
+                app:layout_constraintTop_toTopOf="@id/participants" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/participants_undrln"
@@ -127,26 +143,26 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Participants"
-            app:layout_constraintStart_toStartOf="@id/participants"
-            app:layout_constraintEnd_toEndOf="@id/participants"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/participants"
             app:layout_constraintLeft_toRightOf="@id/price_undrln"
-            app:layout_constraintRight_toLeftOf="@id/accessibility_undrln"/>
+            app:layout_constraintRight_toLeftOf="@id/accessibility_undrln"
+            app:layout_constraintStart_toStartOf="@id/participants" />
         <!--app:layout_constraintEnd_toEndOf="@id/participants"
                 app:layout_constraintStart_toStartOf="@id/participants"-->
         <!--
                 _________________
         -->
 
-         <ImageView
-             android:id="@+id/access"
-             android:layout_width="100dp"
-             android:layout_height="10dp"
-             android:layout_margin="10dp"
-             android:background="@drawable/lt_accessibility"
-             app:layout_constraintBottom_toTopOf="@id/accessibility_undrln"
-             app:layout_constraintRight_toRightOf="parent"
-             app:layout_constraintLeft_toRightOf="@id/participants"/>
+        <ImageView
+            android:id="@+id/access"
+            android:layout_width="100dp"
+            android:layout_height="10dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/lt_accessibility"
+            app:layout_constraintBottom_toTopOf="@id/accessibility_undrln"
+            app:layout_constraintLeft_toRightOf="@id/participants"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:id="@+id/accessibility_undrln"
@@ -155,11 +171,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Accessibility"
-            app:layout_constraintStart_toStartOf="@id/access"
-            app:layout_constraintEnd_toEndOf="@id/access"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/access"
             app:layout_constraintLeft_toRightOf="@id/participants_undrln"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="@id/access" />
         <!--app:layout_constraintStart_toStartOf="@id/access"
         app:layout_constraintEnd_toEndOf="@id/access"-->
 
