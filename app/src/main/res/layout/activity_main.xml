@@ -4,15 +4,249 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
+    android:orientation="vertical"
+    android:padding="15dp"
     tools:context=".presentation.main.MainActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_window"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/lt_main_window"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="28dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/lt_category"
+            android:text="  Category"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@id/main_window"
+            app:layout_constraintRight_toRightOf="@id/main_window"
+            app:layout_constraintTop_toTopOf="@id/main_window" />
+
+        <TextView
+            android:id="@+id/main_text"
+            style="@style/action_text_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="GAGA urara"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#DC366A"
+            android:src="@drawable/ic_hearth"
+            app:layout_constraintRight_toRightOf="@id/main_window"
+            app:layout_constraintTop_toTopOf="@id/main_window" />
+
+        <!--
+                ______________________________________________
+        -->
+        <TextView
+            android:id="@+id/price"
+            style="@style/presentational_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Price"
+            app:layout_constraintBottom_toTopOf="@id/price_undrln"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/participants"/>
+
+        <TextView
+            android:id="@+id/price_undrln"
+            style="@style/underline_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Price"
+            app:layout_constraintStart_toStartOf="@id/price"
+            app:layout_constraintEnd_toEndOf="@id/price"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/participants_undrln"/>
+
+        <!--app:layout_constraintStart_toStartOf="@id/price"
+                app:layout_constraintEnd_toEndOf="@id/price"-->
+        <LinearLayout
+            android:id="@+id/participants"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toTopOf="@id/participants_undrln"
+            app:layout_constraintRight_toLeftOf="@id/access"
+            app:layout_constraintLeft_toRightOf="@id/price">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_weight="1"
+
+                android:background="@drawable/lt_icons"
+                android:src="@drawable/ic_person" />
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_weight="1"
+
+                android:background="@drawable/lt_icons"
+                android:src="@drawable/ic_group" />
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_weight="1"
+
+                android:background="@drawable/lt_icons"
+                android:src="@drawable/ic_person_add" />
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_weight="1"
+                android:background="@drawable/lt_icons"
+                android:src="@drawable/ic_group_add" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/participants_undrln"
+            style="@style/underline_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Participants"
+            app:layout_constraintStart_toStartOf="@id/participants"
+            app:layout_constraintEnd_toEndOf="@id/participants"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/price_undrln"
+            app:layout_constraintRight_toLeftOf="@id/accessibility_undrln"/>
+        <!--app:layout_constraintEnd_toEndOf="@id/participants"
+                app:layout_constraintStart_toStartOf="@id/participants"-->
+        <!--
+                _________________
+        -->
+
+         <ImageView
+             android:id="@+id/access"
+             android:layout_width="100dp"
+             android:layout_height="10dp"
+             android:layout_margin="10dp"
+             android:background="@drawable/lt_accessibility"
+             app:layout_constraintBottom_toTopOf="@id/accessibility_undrln"
+             app:layout_constraintRight_toRightOf="parent"
+             app:layout_constraintLeft_toRightOf="@id/participants"/>
+
+        <TextView
+            android:id="@+id/accessibility_undrln"
+            style="@style/underline_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Accessibility"
+            app:layout_constraintStart_toStartOf="@id/access"
+            app:layout_constraintEnd_toEndOf="@id/access"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/participants_undrln"
+            app:layout_constraintRight_toRightOf="parent" />
+        <!--app:layout_constraintStart_toStartOf="@id/access"
+        app:layout_constraintEnd_toEndOf="@id/access"-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btn_next_idea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/lt_button"
+        android:text="Next"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/main_window" />
+
+
     <TextView
+        android:id="@+id/list_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="2dp"
+        android:text="Category"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/list"
+        app:layout_constraintStart_toStartOf="@id/list" />
+
+    <Spinner
+        android:id="@+id/list"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:background="@drawable/lt_spinner"
+        android:entries="@array/Type"
+        app:layout_constraintBottom_toBottomOf="@id/seek_bar_1"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/seek_bar_1" />
+
+    <!--============-->
+
+
+    <TextView
+        android:id="@+id/seek_bar_1_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="Price"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+
+        app:layout_constraintBottom_toTopOf="@id/seek_bar_1"
+        app:layout_constraintStart_toStartOf="@id/seek_bar_1" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seek_bar_1"
+        android:layout_width="170dp"
+        android:layout_height="20dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@id/seek_bar_2"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/btn_next_idea" />
+
+    <!--============-->
+
+    <TextView
+        android:id="@+id/seek_bar_2_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="Accessibility"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+
+        app:layout_constraintBottom_toTopOf="@id/seek_bar_2"
+        app:layout_constraintStart_toStartOf="@id/seek_bar_2" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seek_bar_2"
+        android:layout_width="170dp"
+        android:layout_height="20dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@id/seek_bar_1"
+        app:layout_constraintTop_toBottomOf="@id/seek_bar_1" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
