@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.todourmat.data.AppPreferences;
 import com.example.todourmat.presentation.main.MainActivity;
 import com.example.todourmat.R;
 import com.google.android.material.tabs.TabLayout;
@@ -24,6 +25,7 @@ public class IntroActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private DotsIndicator dotsIndicator;
     private Button btnSkip, btnNext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,6 @@ public class IntroActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveIsShown();
                 Intent intent = new Intent(IntroActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -52,7 +53,6 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
-
             }
         });
 
@@ -100,8 +100,10 @@ public class IntroActivity extends AppCompatActivity {
         }
     }
 
-    private void saveIsShown(){
-        SharedPreferences preferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        preferences.edit().putBoolean("isShown", true).apply();
-    }
+/*
+    private void saveIsShown() {
+        String PREF_IS_FIRST_LAUNCH = "is_first_launch";
+        SharedPreferences preferences = getSharedPreferences(PREF_IS_FIRST_LAUNCH, Context.MODE_PRIVATE);
+        preferences.edit().putBoolean("isShown", false).apply();
+    }*/
 }
