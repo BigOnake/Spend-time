@@ -1,7 +1,5 @@
 package com.example.todourmat.data.local;
 
-import android.util.Log;
-
 import com.example.todourmat.model.BoredAction;
 
 import java.util.List;

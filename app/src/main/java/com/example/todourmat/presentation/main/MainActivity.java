@@ -1,7 +1,6 @@
 package com.example.todourmat.presentation.main;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +23,6 @@ import com.example.todourmat.model.BoredAction;
 import com.example.todourmat.data.BoredApiClient;
 import com.example.todourmat.presentation.intro.IntroActivity;
 
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,9 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void skipIntroIfShown() {
-        Boolean isFirstLaunched = new AppPreferences(this).isFirstLaunch();
+        AppPreferences appPreferences = new AppPreferences(this);
+        boolean isFirstLaunched = appPreferences.isFirstLaunch();
         if (isFirstLaunched) {
             startActivity(new Intent(this, IntroActivity.class));
+            appPreferences.setLaunched();
             finish();
         }
     }
@@ -119,14 +119,13 @@ public class MainActivity extends AppCompatActivity {
                         boredAction.setType(spinnerType.getSelectedItem().toString());
                         category.setText(boredAction.getType());
                         mainText.setText(boredAction.getActivity());
-                        //participantsFilter(boredAction);
+                        participantsFilter(boredAction);
                         //priceFilter(boredAction);
                         //accessFilter(boredAction);
                     }
 
                     @Override
                     public void onFailure(Exception ex) {
-                        Log.d("ololo", ex.getMessage());
                     }
                 });
     }
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
     public void priceFilter(BoredAction boredAction) {
         if (boredAction.getPrice() != null) {
             if (minPrice >= 0.0f && maxPrice <= 0.3f) {
-                price.setText("1");
+                price.setText("$");
             } else if (minPrice >= 0.4f && maxPrice <= 0.6f) {
                 price.setText("$$");
             } else if (minPrice >= 0.7f && maxPrice <= 0.8f) {
@@ -147,11 +146,9 @@ public class MainActivity extends AppCompatActivity {
         if (boredAction.getAccessibility() != null) {
             if (minAcc >= 0.0f && maxAcc <= 0.4f) {
                 accessibility.drawableHotspotChanged(0.0f, 0.4f);
-            }
-            if (minAcc >= 0.5f && maxAcc <= 0.9f) {
+            } else if (minAcc >= 0.5f && maxAcc <= 0.9f) {
                 accessibility.drawableHotspotChanged(0.5f, 0.9f);
-            }
-            if (minAcc >= 1.0f && maxAcc <= 1.5f) {
+            } else if (minAcc >= 1.0f && maxAcc <= 1.5f) {
                 accessibility.drawableHotspotChanged(1.0f, 1.5f);
             }
         }

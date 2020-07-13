@@ -21,6 +21,6 @@ public class AppPreferences {
     }
 
     public boolean isFirstLaunch() {
-        return preferences.getBoolean(PREF_IS_FIRST_LAUNCH, false);
+        return preferences.getBoolean(PREF_IS_FIRST_LAUNCH, true);
     }
 }

@@ -13,7 +13,7 @@ import com.example.todourmat.model.BoredAction;
 )
 
 public abstract class BoredDataBase extends RoomDatabase {
-    public final static int VERSION = 7;
+    public final static int VERSION = 1;
 
     public abstract BoredDao boredDao();
 }

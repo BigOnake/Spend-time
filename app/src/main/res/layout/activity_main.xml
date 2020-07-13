@@ -105,40 +105,6 @@
                 app:layout_constraintLeft_toLeftOf="@id/participants"
                 app:layout_constraintTop_toTopOf="@id/participants" />
 
-            <!--<ImageView
-                android:id="@+id/group"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_weight="1"
-                android:background="@drawable/lt_icons"
-                android:src="@drawable/ic_group"
-                app:layout_constraintLeft_toRightOf="@id/person"
-
-                app:layout_constraintRight_toLeftOf="@id/person_add"
-                app:layout_constraintTop_toTopOf="@id/participants" />
-
-            <ImageView
-                android:id="@+id/person_add"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_weight="1"
-                android:background="@drawable/lt_icons"
-                android:src="@drawable/ic_person_add"
-                app:layout_constraintLeft_toRightOf="@id/group"
-
-                app:layout_constraintRight_toLeftOf="@id/group_add"
-                app:layout_constraintTop_toTopOf="@id/participants" />
-
-            <ImageView
-                android:id="@+id/group_add"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_weight="1"
-                android:background="@drawable/lt_icons"
-                android:src="@drawable/ic_group_add"
-                app:layout_constraintLeft_toRightOf="@id/person_add"
-                app:layout_constraintRight_toRightOf="@id/participants"
-                app:layout_constraintTop_toTopOf="@id/participants" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
