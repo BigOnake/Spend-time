@@ -38,8 +38,9 @@
             android:layout_height="110dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:text="GAGA urara"
+            android:text=""
             android:textStyle="bold"
+            android:gravity="center"
             android:layout_marginBottom="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -60,10 +61,11 @@
         <TextView
             android:id="@+id/price"
             style="@style/presentational_text"
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Price"
+            android:gravity="center"
             app:layout_constraintBottom_toTopOf="@id/price_undrln"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/participants" />
@@ -85,11 +87,12 @@
                 app:layout_constraintEnd_toEndOf="@id/price"-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/participants"
-            android:layout_width="wrap_content"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:layout_constraintBottom_toTopOf="@id/participants_undrln"
             app:layout_constraintLeft_toRightOf="@id/price"
+            android:foregroundGravity="center"
             app:layout_constraintRight_toLeftOf="@id/access">
 
             <ImageView
@@ -237,17 +240,16 @@
         app:bar_color="#FFFF"
         app:bar_highlight_color="#2F80ED"
         app:corner_radius="5"
-        app:data_type="_integer"
+        app:data_type="_float"
 
-        app:fix_gap="0.5"
         app:layout_constraintBottom_toTopOf="@id/seek_bar_2"
         app:layout_constraintLeft_toRightOf="@id/list"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_next_idea"
         app:left_thumb_color="#693BFD"
         app:left_thumb_color_pressed="#693BFD"
-        app:max_value="0.1"
-        app:min_value="1.5"
+        app:max_value="0.8"
+        app:min_value="0.0"
         app:right_thumb_color="#693BFD"
         app:right_thumb_color_pressed="#030B47" />
     <!--============-->
@@ -271,8 +273,7 @@
         app:bar_color="#FFFF"
         app:bar_highlight_color="#2F80ED"
         app:corner_radius="5"
-        app:data_type="_integer"
-        app:fix_gap="0.5"
+        app:data_type="_float"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintRight_toRightOf="parent"
@@ -280,8 +281,8 @@
         app:layout_constraintTop_toBottomOf="@id/seek_bar_1"
         app:left_thumb_color="#693BFD"
         app:left_thumb_color_pressed="#693BFD"
-        app:max_value="0.1"
-        app:min_value="1.5"
+        app:max_value="1.5"
+        app:min_value="0.0"
         app:right_thumb_color="#693BFD"
         app:right_thumb_color_pressed="#030B47" />
 

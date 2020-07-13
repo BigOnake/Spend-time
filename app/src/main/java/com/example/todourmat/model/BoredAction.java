@@ -1,14 +1,19 @@
 package com.example.todourmat.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "bored_action")
 public class BoredAction {
+
     @SerializedName("key")
-    @ColumnInfo(name = "key")
+    @ColumnInfo(name = "uuid")
+    @PrimaryKey
+    @NonNull
     private String key;
 
     @SerializedName("activity")
@@ -19,6 +24,14 @@ public class BoredAction {
     @ColumnInfo(name = "type")
     private String type;
 
+    @SerializedName("participants")
+    @ColumnInfo(name = "participants")
+    private Integer participants;
+
+    @SerializedName("price")
+    @ColumnInfo(name = "price")
+    private Float price;
+
     @SerializedName("link")
     @ColumnInfo(name = "link")
     private String link;
@@ -27,15 +40,7 @@ public class BoredAction {
     @ColumnInfo(name = "accessibility")
     private Float accessibility;
 
-    @SerializedName("price")
-    @ColumnInfo(name = "price")
-    private Float price;
-
-    @SerializedName("participants")
-    @ColumnInfo(name = "participants")
-    private Integer participants;
-
-    public BoredAction(String key, String activity, String type, String link, Float accessibility, Float price, Integer participants) {
+    public BoredAction( @NonNull String key, String activity, String type, String link, Float accessibility, Float price, Integer participants) {
         this.key = key;
         this.activity = activity;
         this.type = type;
@@ -49,7 +54,7 @@ public class BoredAction {
         return key;
     }
 
-    public void setKey(String key) {
+    public void setKey( String key) {
         this.key = key;
     }
 
