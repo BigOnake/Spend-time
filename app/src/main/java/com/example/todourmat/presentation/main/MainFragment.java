@@ -25,26 +25,23 @@ public class MainFragment extends Fragment {
 
     private TextView mainText, category, price;
     private Spinner spinnerType;
-    Button nextBtn;
     private String valueOfSpinner;
-    CrystalRangeSeekbar seekbar1, seekbar2;
     private ImageView participants, accessibility;
     private Float maxPrice, minPrice, maxAccessibility, minAccessibility;
 
-    public static  Fragment newInstance(){
-       return new MainFragment();
-    }
+    public static  Fragment newInstance(){ return new MainFragment(); }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
+
         mainText = v.findViewById(R.id.main_text);
         category = v.findViewById(R.id.category);
         spinnerType = v.findViewById(R.id.list);
-        nextBtn = v.findViewById(R.id.btn_next_idea);
-        seekbar1 = v.findViewById(R.id.seek_bar_1);
-        seekbar2 = v.findViewById(R.id.seek_bar_2);
+        Button nextBtn = v.findViewById(R.id.btn_next_idea);
+        CrystalRangeSeekbar seekbar1 = v.findViewById(R.id.seek_bar_1);
+        CrystalRangeSeekbar seekbar2 = v.findViewById(R.id.seek_bar_2);
         participants = v.findViewById(R.id.person);
         accessibility = v.findViewById(R.id.access);
         price = v.findViewById(R.id.price);
@@ -53,24 +50,18 @@ public class MainFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 valueOfSpinner = spinnerType.getSelectedItem().toString();
-                category.setText(valueOfSpinner);
-            }
-
+                category.setText(valueOfSpinner); }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(v.getContext(), "No item is selected", Toast.LENGTH_SHORT).show();
-            }
-        });
+                Toast.makeText(v.getContext(), "No item is selected", Toast.LENGTH_SHORT).show(); }});
 
         seekbar1.setOnRangeSeekbarChangeListener((minValue, maxValue) -> {
             minPrice = minValue.floatValue();
-            maxPrice = maxValue.floatValue();
-        });
+            maxPrice = maxValue.floatValue(); });
 
         seekbar2.setOnRangeSeekbarChangeListener((minValue, maxValue) -> {
             minAccessibility = minValue.floatValue();
-            maxAccessibility = maxValue.floatValue();
-        });
+            maxAccessibility = maxValue.floatValue(); });
 
         Log.d("ololo", "должно");
         question();
@@ -104,8 +95,7 @@ public class MainFragment extends Fragment {
                     }
 
                     @Override
-                    public void onFailure(Exception ex) {
-                    }
+                    public void onFailure(Exception ex) {}
                 });
     }
 
@@ -151,5 +141,4 @@ public class MainFragment extends Fragment {
             }
         }
     }
-
 }

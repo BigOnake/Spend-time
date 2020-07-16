@@ -9,7 +9,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.example.todourmat.R;
 import com.example.todourmat.data.AppPreferences;
@@ -24,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
-
 
     public void skipIntroIfShown() {
         AppPreferences appPreferences = new AppPreferences(this);
