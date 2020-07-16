@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.example.todourmat.App;
 import com.example.todourmat.R;
-import com.example.todourmat.data.BoredApiClient;
+import com.example.todourmat.data.remote.BoredApiClient;
 import com.example.todourmat.model.BoredAction;
 
 public class MainFragment extends Fragment {

@@ -1,6 +1,7 @@
-package com.example.todourmat.data;
+package com.example.todourmat.data.remote;
 
 
+import com.example.todourmat.core.CoreCallback;
 import com.example.todourmat.model.BoredAction;
 
 import retrofit2.Call;
@@ -33,12 +34,12 @@ public class BoredApiClient {
 
         call.enqueue(new CoreCallback<BoredAction>() {
             @Override
-            void onSuccess(BoredAction result) {
+            public void onSuccess(BoredAction result) {
                 callback.onSuccess(result);
             }
 
             @Override
-            void onFailure(Exception exception) {
+            public void onFailure(Exception exception) {
                 callback.onFailure(exception);
             }
         });

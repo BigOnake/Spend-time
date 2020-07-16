@@ -1,4 +1,4 @@
-package com.example.todourmat.data;
+package com.example.todourmat.core;
 
 import android.util.Log;
 
@@ -8,8 +8,8 @@ import retrofit2.Response;
 
 abstract public class CoreCallback<T> implements Callback<T> {
 
-    abstract void onSuccess(T result);
-    abstract void onFailure(Exception exception);
+    public abstract void onSuccess(T result);
+    public abstract void onFailure(Exception exception);
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {

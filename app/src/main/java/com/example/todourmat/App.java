@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.room.Room;
 
 import com.example.todourmat.data.AppPreferences;
-import com.example.todourmat.data.BoredApiClient;
+import com.example.todourmat.data.remote.BoredApiClient;
 import com.example.todourmat.data.db.BoredDataBase;
 import com.example.todourmat.data.local.BoredStorage;
 
