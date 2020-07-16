@@ -7,17 +7,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.todourmat.data.AppPreferences;
 import com.example.todourmat.presentation.main.MainActivity;
 import com.example.todourmat.R;
-import com.google.android.material.tabs.TabLayout;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 public class IntroActivity extends AppCompatActivity {
@@ -40,30 +37,21 @@ public class IntroActivity extends AppCompatActivity {
         btnSkip = findViewById(R.id.btn_skip);
         btnNext = findViewById(R.id.btn_next);
 
-        btnSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(IntroActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        btnSkip.setOnClickListener(v -> {
+            Intent intent = new Intent(IntroActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
 
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
-            }
-        });
+        btnNext.setOnClickListener(v -> viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true));
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
             @Override
             public void onPageSelected(int position) {
-                if (viewPager.getCurrentItem() == 2) {
+                if (viewPager.getCurrentItem() == IntroPagerAdapter.PAGES_COUNT - 1) {
                     btnNext.setVisibility(View.GONE);
                     btnSkip.setText("Start");
                 } else {
@@ -73,8 +61,7 @@ public class IntroActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
     }
 
@@ -96,7 +83,7 @@ public class IntroActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return PAGES_COUNT;
         }
     }
 

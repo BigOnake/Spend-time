@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TODO Urmat</string>
+    <string name="app_name">Leisure Helper</string>
 
     <string-array name="Type">
         <item>all</item>
@@ -13,4 +13,28 @@
         <item>music</item>
         <item>busywork</item>
     </string-array>
+
+    //Activity requirements display
+    <string name="lowest_cost_string">Free</string>
+    <string name="price_sign_string">$</string>
+    <string name="price_string">Price</string>
+    <string name="accessibility_string">Accessibility</string>
+    <string name="participants_string">Participants</string>
+
+    //Button names
+    <string name="next_button_string">Next</string>
+    <string name="skip_button_string">Skip</string>
+
+    //Icons names
+    <string name="category_string">Category</string>
+
+    //Image description
+    <string name="favourites_description_string">favourites view</string>
+    <string name="participants_description_string">participants icon</string>
+    <string name="accessibility_description_string">accessibility icon</string>
+
+    //Intro ViewPager text
+    <string name="page1">Welcome to Leisure Helper!</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
