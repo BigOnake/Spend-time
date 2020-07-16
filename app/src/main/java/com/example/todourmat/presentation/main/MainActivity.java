@@ -31,9 +31,8 @@ public class MainActivity extends AppCompatActivity {
     Button nextBtn;
     String valueOfSpinner;
     CrystalRangeSeekbar seekbar1, seekbar2;
-    ImageView participants;
-    Float maxPrice, minPrice, maxAcc, minAcc;
-    ProgressBar accessibility;
+    ImageView participants, accessibility;
+    Float maxPrice, minPrice, maxAccessibility, minAccessibility;
 
 
     public void skipIntroIfShown() {
@@ -59,54 +58,40 @@ public class MainActivity extends AppCompatActivity {
         seekbar1 = findViewById(R.id.seek_bar_1);
         seekbar2 = findViewById(R.id.seek_bar_2);
         participants = findViewById(R.id.person);
-        price = findViewById(R.id.price);
         accessibility = findViewById(R.id.access);
+        price = findViewById(R.id.price);
 
         spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 valueOfSpinner = spinnerType.getSelectedItem().toString();
-                category.setText(valueOfSpinner);
-            }
-
+                category.setText(valueOfSpinner); }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(MainActivity.this, "No item is selected", Toast.LENGTH_SHORT).show();
-            }
+                Toast.makeText(MainActivity.this, "No item is selected", Toast.LENGTH_SHORT).show(); }
         });
 
-        seekbar1.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
-            @Override
-            public void valueChanged(Number minValue, Number maxValue) {
-                minPrice = minValue.floatValue();
-                maxPrice = maxValue.floatValue();
-            }
+        seekbar1.setOnRangeSeekbarChangeListener((minValue, maxValue) -> {
+            minPrice = minValue.floatValue();
+            maxPrice = maxValue.floatValue();
         });
 
-        seekbar2.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
-            @Override
-            public void valueChanged(Number minValue, Number maxValue) {
-                minAcc = minValue.floatValue();
-                maxAcc = maxValue.floatValue();
-            }
+        seekbar2.setOnRangeSeekbarChangeListener((minValue, maxValue) -> {
+            minAccessibility = minValue.floatValue();
+            maxAccessibility = maxValue.floatValue();
         });
 
         Log.d("ololo", "должно");
-
         question();
 
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("ololo", "click должно работать");
-                question();
-            }
-        });
+        nextBtn.setOnClickListener(v -> {
+            Log.d("ololo", "click должно работать");
+            question();});
     }
 
     public void question() {
         App.boredApiClient.getAction(null, null, valueOfSpinner,
-                null, null, null, null,
+                minPrice, maxPrice, minAccessibility, maxAccessibility,
                 new BoredApiClient.BoredActionCallback() {
                     @Override
                     public void onSuccess(BoredAction boredAction) {
@@ -120,23 +105,24 @@ public class MainActivity extends AppCompatActivity {
                         category.setText(boredAction.getType());
                         mainText.setText(boredAction.getActivity());
                         participantsFilter(boredAction);
-                        //priceFilter(boredAction);
-                        //accessFilter(boredAction);
+                        accessFilter(boredAction);
+                        priceFilter(boredAction);
                     }
 
                     @Override
-                    public void onFailure(Exception ex) {
-                    }
+                    public void onFailure(Exception ex) {}
                 });
     }
 
     public void priceFilter(BoredAction boredAction) {
         if (boredAction.getPrice() != null) {
-            if (minPrice >= 0.0f && maxPrice <= 0.3f) {
+            if (boredAction.getPrice() >= 0.0f && boredAction.getPrice() <= 0.1f) {
                 price.setText("$");
-            } else if (minPrice >= 0.4f && maxPrice <= 0.6f) {
+            }
+            if (boredAction.getPrice() >= 0.2f && boredAction.getPrice() <= 0.3f) {
                 price.setText("$$");
-            } else if (minPrice >= 0.7f && maxPrice <= 0.8f) {
+            }
+            if (boredAction.getPrice() >= 0.4f && boredAction.getPrice() <= 0.5f) {
                 price.setText("$$$");
             }
         }
@@ -144,12 +130,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void accessFilter(BoredAction boredAction) {
         if (boredAction.getAccessibility() != null) {
-            if (minAcc >= 0.0f && maxAcc <= 0.4f) {
-                accessibility.drawableHotspotChanged(0.0f, 0.4f);
-            } else if (minAcc >= 0.5f && maxAcc <= 0.9f) {
-                accessibility.drawableHotspotChanged(0.5f, 0.9f);
-            } else if (minAcc >= 1.0f && maxAcc <= 1.5f) {
-                accessibility.drawableHotspotChanged(1.0f, 1.5f);
+            if (boredAction.getAccessibility() >= 0.0f && boredAction.getAccessibility() <= 0.3f) {
+                accessibility.setImageResource(R.drawable.ic_acc_empty);
+            }
+            if (boredAction.getAccessibility() >= 0.4f && boredAction.getAccessibility() <= 0.7f) {
+                accessibility.setImageResource(R.drawable.ic_acc_half);
+            }
+            if (boredAction.getAccessibility() >= 0.8f && boredAction.getAccessibility() <= 1.0f) {
+                accessibility.setImageResource(R.drawable.ic_acc_full);
             }
         }
     }

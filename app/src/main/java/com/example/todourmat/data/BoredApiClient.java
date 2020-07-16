@@ -1,6 +1,5 @@
 package com.example.todourmat.data;
 
-import android.util.Log;
 
 import com.example.todourmat.model.BoredAction;
 
@@ -20,17 +19,17 @@ public class BoredApiClient {
     BoredApi client = retrofit.create(BoredApi.class);
 
     public void getAction(String key, Integer participants, String type, Float minPrice, Float maxPrice,
-                          Float maxAccessibility, Float minAccessibility, BoredActionCallback callback) {
+                          Float minAccessibility, Float maxAccessibility, BoredActionCallback callback) {
 
         Call<BoredAction> call = client.getAction(
                 key,
+                participants,
                 type,
                 minPrice,
                 maxPrice,
-                participants,
-                maxAccessibility,
-                minAccessibility
-        );
+                minAccessibility,
+                maxAccessibility
+                );
 
         call.enqueue(new CoreCallback<BoredAction>() {
             @Override
@@ -57,10 +56,10 @@ public class BoredApiClient {
         @GET("api/activity/")
         Call<BoredAction> getAction(
                 @Query("key") String key,
+                @Query("participants") Integer participants,
                 @Query("type") String type,
                 @Query("minprice") Float minPrice,
                 @Query("maxprice") Float maxPrice,
-                @Query("participants") Integer participants,
                 @Query("minaccessibility") Float minAccessibility,
                 @Query("maxaccessibility") Float maxAccessibility
         );

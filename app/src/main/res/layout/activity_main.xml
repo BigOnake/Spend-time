@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
     android:orientation="vertical"
     android:padding="15dp"
     tools:context=".presentation.main.MainActivity">
@@ -12,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_window"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="200dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/lt_main_window"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,8 +22,8 @@
             android:layout_height="28dp"
             android:layout_margin="8dp"
             android:background="@drawable/lt_category"
-            android:text="Category"
             android:gravity="center"
+            android:text="Category"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             app:layout_constraintLeft_toLeftOf="@id/main_window"
@@ -35,13 +34,13 @@
             android:id="@+id/main_text"
             style="@style/action_text_main"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
             android:text=""
             android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -50,7 +49,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="#DC366A"
+            android:background="@color/show_cl"
             android:src="@drawable/ic_hearth"
             app:layout_constraintRight_toRightOf="@id/main_window"
             app:layout_constraintTop_toTopOf="@id/main_window" />
@@ -58,17 +57,19 @@
         <!--
                 ______________________________________________
         -->
+
         <TextView
             android:id="@+id/price"
             style="@style/presentational_text"
-            android:layout_width="90dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Price"
             android:gravity="center"
+            android:text="$"
             app:layout_constraintBottom_toTopOf="@id/price_undrln"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/participants" />
+            app:layout_constraintStart_toStartOf="@id/price_undrln"
+            app:layout_constraintEnd_toEndOf="@id/price_undrln"
+            />
 
         <TextView
             android:id="@+id/price_undrln"
@@ -76,36 +77,22 @@
             android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="        Price"
+            android:gravity="center"
+            android:text="Price"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/price"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/participants_undrln"
-            app:layout_constraintStart_toStartOf="@id/price" />
+            app:layout_constraintRight_toLeftOf="@id/participants_undrln" />
 
-        <!--app:layout_constraintStart_toStartOf="@id/price"
-                app:layout_constraintEnd_toEndOf="@id/price"-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/participants"
+        <ImageView
+            android:id="@+id/person"
             android:layout_width="25dp"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_margin="10dp"
+            android:background="@drawable/lt_icons"
+            android:src="@drawable/ic_person"
             app:layout_constraintBottom_toTopOf="@id/participants_undrln"
-            app:layout_constraintLeft_toRightOf="@id/price"
-            android:foregroundGravity="center"
-            app:layout_constraintRight_toLeftOf="@id/access">
-
-            <ImageView
-                android:id="@+id/person"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_weight="1"
-                android:background="@drawable/lt_icons"
-                android:src="@drawable/ic_person"
-                app:layout_constraintLeft_toLeftOf="@id/participants"
-                app:layout_constraintTop_toTopOf="@id/participants" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintStart_toStartOf="@id/participants_undrln"
+            app:layout_constraintEnd_toEndOf="@id/participants_undrln"/>
 
         <TextView
             android:id="@+id/participants_undrln"
@@ -113,27 +100,27 @@
             android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:gravity="center"
             android:text="Participants"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/participants"
             app:layout_constraintLeft_toRightOf="@id/price_undrln"
-            app:layout_constraintRight_toLeftOf="@id/accessibility_undrln"
-            app:layout_constraintStart_toStartOf="@id/participants" />
+            app:layout_constraintRight_toLeftOf="@id/accessibility_undrln"/>
 
         <!--
                 _________________
         -->
 
-        <ProgressBar
+        <ImageView
             android:id="@+id/access"
-            android:layout_width="80dp"
-            android:layout_height="15dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_margin="10dp"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:progressDrawable="@drawable/lt_accessibility"
+            android:background="@drawable/lt_icons"
+            android:src="@drawable/ic_acc_empty"
             app:layout_constraintBottom_toTopOf="@id/accessibility_undrln"
-            app:layout_constraintLeft_toRightOf="@id/participants"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintEnd_toEndOf="@id/accessibility_undrln"
+            app:layout_constraintStart_toStartOf="@id/accessibility_undrln"/>
 
         <TextView
             android:id="@+id/accessibility_undrln"
@@ -141,12 +128,11 @@
             android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:gravity="center"
             android:text="Accessibility"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/access"
             app:layout_constraintLeft_toRightOf="@id/participants_undrln"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="@id/access" />
+            app:layout_constraintRight_toRightOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -177,15 +163,14 @@
     <Spinner
         android:id="@+id/list"
         android:layout_width="150dp"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:background="@drawable/lt_spinner"
         android:entries="@array/Type"
         app:layout_constraintBottom_toBottomOf="@id/seek_bar_1"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@id/seek_bar_1" />
+        app:layout_constraintTop_toTopOf="@id/seek_bar_1"/>
 
     <!--============-->
-
 
     <TextView
         android:id="@+id/seek_bar_1_name"
@@ -195,7 +180,6 @@
         android:text="Price"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-
         app:layout_constraintBottom_toTopOf="@id/seek_bar_1"
         app:layout_constraintStart_toStartOf="@id/seek_bar_1" />
 
@@ -207,17 +191,17 @@
         app:bar_highlight_color="#2F80ED"
         app:corner_radius="5"
         app:data_type="_float"
-
         app:layout_constraintBottom_toTopOf="@id/seek_bar_2"
         app:layout_constraintLeft_toRightOf="@id/list"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_next_idea"
         app:left_thumb_color="#693BFD"
         app:left_thumb_color_pressed="#693BFD"
-        app:max_value="0.8"
+        app:max_value="0.5"
         app:min_value="0.0"
         app:right_thumb_color="#693BFD"
         app:right_thumb_color_pressed="#030B47" />
+
     <!--============-->
 
     <TextView
@@ -228,7 +212,6 @@
         android:text="Accessibility"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-
         app:layout_constraintBottom_toTopOf="@id/seek_bar_2"
         app:layout_constraintStart_toStartOf="@id/seek_bar_2" />
 
@@ -247,8 +230,8 @@
         app:layout_constraintTop_toBottomOf="@id/seek_bar_1"
         app:left_thumb_color="#693BFD"
         app:left_thumb_color_pressed="#693BFD"
-        app:max_value="1.5"
-        app:min_value="0.0"
+        app:max_value="1.00"
+        app:min_value="0.00"
         app:right_thumb_color="#693BFD"
         app:right_thumb_color_pressed="#030B47" />
 
