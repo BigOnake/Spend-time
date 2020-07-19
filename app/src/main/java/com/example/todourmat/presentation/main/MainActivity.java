@@ -13,16 +13,23 @@ import android.os.Bundle;
 import com.example.todourmat.R;
 import com.example.todourmat.data.AppPreferences;
 
+import com.example.todourmat.model.BoredAction;
+import com.example.todourmat.presentation.favourites.FavAdapter;
 import com.example.todourmat.presentation.favourites.FavouritesFragment;
 import com.example.todourmat.presentation.intro.IntroActivity;
 import com.example.todourmat.presentation.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
+    private FavAdapter favAdapter;
+    private ArrayList<BoredAction> list = new ArrayList<>();
+
 
     public void skipIntroIfShown() {
         AppPreferences appPreferences = new AppPreferences(this);
@@ -46,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
         viewPager.setOffscreenPageLimit(2);
 
+        list = new ArrayList<>();
+        favAdapter = new FavAdapter(list);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.nav_main:
@@ -60,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+        bottomNavigationView.setItemIconSize(12);
     }
 
     public class MainPagerAdapter extends FragmentPagerAdapter {
@@ -79,12 +90,17 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     fragment = MainFragment.newInstance();
+                    favAdapter.notifyDataSetChanged();
                     break;
                 case 1:
                     fragment = FavouritesFragment.newInstance();
+                    favAdapter.notifyDataSetChanged();
+
                     break;
                 default:
                     fragment = SettingsFragment.newInstance();
+                    favAdapter.notifyDataSetChanged();
+
             }
             return fragment;
         }

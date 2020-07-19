@@ -21,8 +21,6 @@ import com.example.todourmat.R;
 import com.example.todourmat.data.remote.BoredApiClient;
 import com.example.todourmat.model.BoredAction;
 
-import java.util.concurrent.ThreadPoolExecutor;
-
 public class MainFragment extends Fragment {
 
     private TextView mainText, category, price;
@@ -35,9 +33,7 @@ public class MainFragment extends Fragment {
     private boolean is_photo = true;
     BoredAction mBoredAction;
 
-    public static Fragment newInstance() {
-        return new MainFragment();
-    }
+    public static Fragment newInstance() {return new MainFragment();}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,16 +50,13 @@ public class MainFragment extends Fragment {
         accessibility = v.findViewById(R.id.access);
         favourite = v.findViewById(R.id.favourite);
         price = v.findViewById(R.id.price);
-
         question();
+
+        favourite.setOnClickListener(v12 -> MainFragment.this.favouriteStatus());
 
         nextBtn.setOnClickListener(v1 -> {
             Log.d("ololo", "click должно работать");
             MainFragment.this.question();
-        });
-
-        favourite.setOnClickListener(v12 -> {
-            favouriteStatus();
         });
 
         return v;
@@ -75,24 +68,33 @@ public class MainFragment extends Fragment {
                 new BoredApiClient.BoredActionCallback() {
                     @Override
                     public void onSuccess(BoredAction boredAction) {
-                        App.boredStorage.saveBoredAction(boredAction);
+                        /*App.boredStorage.saveBoredAction(boredAction);
                         for (BoredAction action : App.boredStorage.getAllActions()) {
                             Log.d("ololo", action.toString());
-                        }
+                        }*/
                         Log.d("ololo", "Receive " + boredAction.toString());
-                        mBoredAction = boredAction;
 
-                        mainText.setText(boredAction.getActivity());
+                        activityFilter(boredAction);
                         categoryFilter(boredAction);
                         participantsFilter(boredAction);
                         accessFilter(boredAction);
                         priceFilter(boredAction);
+
+                        mBoredAction = boredAction;
                     }
 
                     @Override
                     public void onFailure(Exception ex) {
                     }
                 });
+    }
+
+    private void activityFilter(BoredAction boredAction){
+        if (boredAction.getActivity() == null){
+            mainText.setText(R.string.activity_null_string);
+        }else{
+            mainText.setText(boredAction.getActivity());
+        }
     }
 
     private void categoryFilter(BoredAction boredAction){

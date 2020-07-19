@@ -10,7 +10,7 @@
 
     <Button
         android:id="@+id/btn_skip"
-        android:layout_width="90dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="@string/skip_button_string"
         android:background="@drawable/lt_button"
@@ -23,7 +23,7 @@
 
     <Button
         android:id="@+id/btn_next"
-        android:layout_width="90dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="@string/next_button_string"
         android:background="@drawable/lt_button"

@@ -47,13 +47,13 @@ public class IntroFragment extends Fragment {
         int pos = getArguments().getInt(ARG_POSITION);
         switch (pos) {
             case 0:
-                textTitle.setText("Page 1");
+                textTitle.setText(R.string.vp_page1_string);
                 break;
             case 1:
-                textTitle.setText("Page 2");
+                textTitle.setText(R.string.vp_page2_string);
                 break;
             case 2:
-                textTitle.setText("Page 3");
+                textTitle.setText(R.string.vp_page3_string);
                 break;
         }
     }
