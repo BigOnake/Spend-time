@@ -39,5 +39,10 @@
     <string name="vp_page2_string">Find out how to spend your free time!</string>
     <string name="vp_page3_string">Let\'s Begin!</string>
 
+    //BNB
+    <string name="bnb_home_string">Home</string>
+    <string name="bnb_fav_string">Favorites</string>
+    <string name="bnb_settings_string">Settings</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

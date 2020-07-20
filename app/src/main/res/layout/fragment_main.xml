@@ -205,7 +205,7 @@
         app:max_value="0.5"
         app:min_value="0.0"
         app:right_thumb_color="#693BFD"
-        app:right_thumb_color_pressed="#030B47" />
+        app:right_thumb_color_pressed="#030B47"/>
 
     <!--============-->
 

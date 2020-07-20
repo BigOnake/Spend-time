@@ -17,17 +17,17 @@ import com.example.todourmat.R;
 import com.example.todourmat.model.BoredAction;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
 
 
-public class FavouritesFragment extends Fragment {
+public class FavouritesFragment extends Fragment{
 
     private FavAdapter favAdapter;
+    private RecyclerView recyclerView;
     private ArrayList<BoredAction> list = new ArrayList<>();
 
-
-    public static Fragment newInstance() {
-        return new FavouritesFragment();
-    }
+    public static Fragment newInstance() {return new FavouritesFragment();}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,13 +38,25 @@ public class FavouritesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = view.findViewById(R.id.fav_recycle_view);
+        recyclerView = view.findViewById(R.id.fav_recycle_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         list = new ArrayList<>();
         favAdapter = new FavAdapter(list);
         recyclerView.setAdapter(favAdapter);
+
+        favAdapter.setOnItemClickListener(pos -> {
+            App.boredStorage.deleteBoredAction(list.get(pos));
+            loadData();
+        });
+
         loadData();
-        //favAdapter.setListener(cardID -> { });
+    }
+
+    public void loadData() {
+        list.clear();
+        list.addAll(App.boredStorage.getAllActions());
+        Collections.reverse(list);
+        Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
     }
 
     @Override
@@ -53,12 +65,9 @@ public class FavouritesFragment extends Fragment {
         loadData();
     }
 
-    private void loadData() {
-        //App.boredStorage.getAllActions();
-        list.clear();
-        list.addAll(App.boredStorage.getAllActions());
-        favAdapter.notifyDataSetChanged();
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
     }
-
-
 }

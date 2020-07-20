@@ -21,11 +21,12 @@ import com.example.todourmat.R;
 import com.example.todourmat.data.remote.BoredApiClient;
 import com.example.todourmat.model.BoredAction;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment{
 
     private TextView mainText, category, price;
     private Spinner spinnerType;
     private String valueOfSpinner;
+    private String nullType = null;
     private CrystalRangeSeekbar seekbar1;
     private CrystalRangeSeekbar seekbar2;
     private ImageView participants, accessibility, favourite;
@@ -33,7 +34,9 @@ public class MainFragment extends Fragment {
     private boolean is_photo = true;
     BoredAction mBoredAction;
 
-    public static Fragment newInstance() {return new MainFragment();}
+    public static Fragment newInstance() {
+        return new MainFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +53,7 @@ public class MainFragment extends Fragment {
         accessibility = v.findViewById(R.id.access);
         favourite = v.findViewById(R.id.favourite);
         price = v.findViewById(R.id.price);
+
         question();
 
         favourite.setOnClickListener(v12 -> MainFragment.this.favouriteStatus());
@@ -63,16 +67,15 @@ public class MainFragment extends Fragment {
     }
 
     private void question() {
-        App.boredApiClient.getAction(null, null, valueOfSpinner,
+        App.boredApiClient.getAction(null, null, nullType,
                 minPrice, maxPrice, minAccessibility, maxAccessibility,
                 new BoredApiClient.BoredActionCallback() {
                     @Override
                     public void onSuccess(BoredAction boredAction) {
-                        /*App.boredStorage.saveBoredAction(boredAction);
                         for (BoredAction action : App.boredStorage.getAllActions()) {
                             Log.d("ololo", action.toString());
-                        }*/
-                        Log.d("ololo", "Receive " + boredAction.toString());
+                        }
+                        Log.i("ololo", "Receive " + boredAction.toString());
 
                         activityFilter(boredAction);
                         categoryFilter(boredAction);
@@ -84,35 +87,37 @@ public class MainFragment extends Fragment {
                     }
 
                     @Override
-                    public void onFailure(Exception ex) {
-                    }
+                    public void onFailure(Exception ex) {}
                 });
     }
 
-    private void activityFilter(BoredAction boredAction){
-        if (boredAction.getActivity() == null){
+    private void activityFilter(BoredAction boredAction) {
+        if (boredAction.getActivity() == null) {
             mainText.setText(R.string.activity_null_string);
-        }else{
+        } else {
             mainText.setText(boredAction.getActivity());
         }
     }
 
-    private void categoryFilter(BoredAction boredAction){
+    private void categoryFilter(BoredAction boredAction) {
         spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 valueOfSpinner = spinnerType.getSelectedItem().toString();
-                category.setText(valueOfSpinner);}
+                category.setText(valueOfSpinner); }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getContext(), "No item is selected", Toast.LENGTH_SHORT).show(); }});
+                Toast.makeText(getContext(), "No item is selected", Toast.LENGTH_SHORT).show();}
+        });
 
         if (spinnerType.getSelectedItem().toString().equals("all")) {
-            boredAction.setType(boredAction.getType());
+            boredAction.setType(nullType);
         } else {
             boredAction.setType(spinnerType.getSelectedItem().toString());
+            nullType = boredAction.getType();
         }
-        category.setText(boredAction.getType());
+        //category.setText(boredAction.getType());
+        category.setText(nullType);
     }
 
     private void priceFilter(BoredAction boredAction) {
@@ -167,13 +172,14 @@ public class MainFragment extends Fragment {
     }
 
     private void favouriteStatus() {
-        if (is_photo){
+        if (is_photo) {
             favourite.setImageResource(R.drawable.ic_hearth_full);
             App.boredStorage.saveBoredAction(mBoredAction);
-        }else{
+        } else {
             favourite.setImageResource(R.drawable.ic_hearth);
             App.boredStorage.deleteBoredAction(mBoredAction);
         }
         is_photo = !is_photo;
     }
+
 }
