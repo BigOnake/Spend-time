@@ -23,7 +23,6 @@ import java.util.Objects;
 
 public class FavouritesFragment extends Fragment{
 
-    private FavAdapter favAdapter;
     private RecyclerView recyclerView;
     private ArrayList<BoredAction> list = new ArrayList<>();
 
@@ -41,7 +40,7 @@ public class FavouritesFragment extends Fragment{
         recyclerView = view.findViewById(R.id.fav_recycle_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         list = new ArrayList<>();
-        favAdapter = new FavAdapter(list);
+        FavAdapter favAdapter = new FavAdapter(list);
         recyclerView.setAdapter(favAdapter);
 
         favAdapter.setOnItemClickListener(pos -> {

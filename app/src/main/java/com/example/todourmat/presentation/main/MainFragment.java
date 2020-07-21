@@ -1,5 +1,7 @@
 package com.example.todourmat.presentation.main;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -21,12 +23,13 @@ import com.example.todourmat.R;
 import com.example.todourmat.data.remote.BoredApiClient;
 import com.example.todourmat.model.BoredAction;
 
-public class MainFragment extends Fragment{
+public class MainFragment extends Fragment {
 
-    private TextView mainText, category, price;
+    private TextView mainText, category, price, link;
     private Spinner spinnerType;
-    private String valueOfSpinner;
+    private String valueOfSpinner = "random";
     private String nullType = null;
+    private String mLink;
     private CrystalRangeSeekbar seekbar1;
     private CrystalRangeSeekbar seekbar2;
     private ImageView participants, accessibility, favourite;
@@ -45,6 +48,7 @@ public class MainFragment extends Fragment{
 
         mainText = v.findViewById(R.id.main_text);
         category = v.findViewById(R.id.category);
+        link = v.findViewById(R.id.link);
         spinnerType = v.findViewById(R.id.list);
         Button nextBtn = v.findViewById(R.id.btn_next_idea);
         seekbar1 = v.findViewById(R.id.seek_bar_1);
@@ -60,14 +64,17 @@ public class MainFragment extends Fragment{
 
         nextBtn.setOnClickListener(v1 -> {
             Log.d("ololo", "click должно работать");
-            MainFragment.this.question();
+            question();
+            favouriteFilter();
         });
+
+        link.setOnClickListener(v13 -> goToURI());
 
         return v;
     }
 
     private void question() {
-        App.boredApiClient.getAction(null, null, nullType,
+        App.boredApiClient.getAction(null, null, null, nullType,
                 minPrice, maxPrice, minAccessibility, maxAccessibility,
                 new BoredApiClient.BoredActionCallback() {
                     @Override
@@ -77,17 +84,18 @@ public class MainFragment extends Fragment{
                         }
                         Log.i("ololo", "Receive " + boredAction.toString());
 
-                        activityFilter(boredAction);
                         categoryFilter(boredAction);
+                        activityFilter(boredAction);
                         participantsFilter(boredAction);
                         accessFilter(boredAction);
                         priceFilter(boredAction);
+                        linkFilter(boredAction);
 
                         mBoredAction = boredAction;
                     }
-
                     @Override
-                    public void onFailure(Exception ex) {}
+                    public void onFailure(Exception ex) {
+                    }
                 });
     }
 
@@ -104,26 +112,51 @@ public class MainFragment extends Fragment{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 valueOfSpinner = spinnerType.getSelectedItem().toString();
-                category.setText(valueOfSpinner); }
+                category.setText(valueOfSpinner);
+            }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getContext(), "No item is selected", Toast.LENGTH_SHORT).show();}
+                Toast.makeText(getContext(), "No item is selected", Toast.LENGTH_SHORT).show();
+            }
         });
 
-        if (spinnerType.getSelectedItem().toString().equals("all")) {
+        if (spinnerType.getSelectedItem().toString().equals("random")) {
             boredAction.setType(nullType);
+            nullType = null;
         } else {
-            boredAction.setType(spinnerType.getSelectedItem().toString());
+            boredAction.setType(valueOfSpinner);
             nullType = boredAction.getType();
         }
-        //category.setText(boredAction.getType());
-        category.setText(nullType);
+        nullType = boredAction.getType();
+        category.setText(valueOfSpinner);
+        //category.setText(nullType);
+    }
+
+    private void linkFilter(BoredAction boredAction) {
+        if (boredAction.getLink() != null) {
+            if (boredAction.getLink().equals("")) {
+                link.setVisibility(View.GONE);
+            } else {
+                link.setVisibility(View.VISIBLE);
+                mLink = boredAction.getLink();
+            }
+        }
+    }
+
+    public void goToURI() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(mLink));
+        startActivity(intent);
     }
 
     private void priceFilter(BoredAction boredAction) {
         seekbar1.setOnRangeSeekbarChangeListener((minValue, maxValue) -> {
             minPrice = minValue.floatValue();
-            maxPrice = maxValue.floatValue();});
+            maxPrice = maxValue.floatValue();
+        });
 
         if (boredAction.getPrice() != null) {
             if (boredAction.getPrice() == 0.0f) {
@@ -144,7 +177,8 @@ public class MainFragment extends Fragment{
     private void accessFilter(BoredAction boredAction) {
         seekbar2.setOnRangeSeekbarChangeListener((minValue, maxValue) -> {
             minAccessibility = minValue.floatValue();
-            maxAccessibility = maxValue.floatValue();});
+            maxAccessibility = maxValue.floatValue();
+        });
 
         if (boredAction.getAccessibility() != null) {
             if (boredAction.getAccessibility() >= 0.0f && boredAction.getAccessibility() <= 0.3f) {
@@ -180,6 +214,14 @@ public class MainFragment extends Fragment{
             App.boredStorage.deleteBoredAction(mBoredAction);
         }
         is_photo = !is_photo;
+    }
+
+    private void favouriteFilter() {
+        if (!is_photo) {
+            favourite.setImageResource(R.drawable.ic_hearth);
+        } else {
+            favourite.setImageResource(R.drawable.ic_hearth_full);
+        }
     }
 
 }

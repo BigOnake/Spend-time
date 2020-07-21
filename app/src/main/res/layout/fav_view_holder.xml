@@ -22,16 +22,21 @@
 
         <TextView
             android:id="@+id/fav_category"
+            style="@style/header_text"
             android:layout_width="100dp"
-            android:layout_height="28dp"
-            android:layout_margin="8dp"
             android:background="@drawable/lt_category"
-            android:gravity="center"
             android:text="@string/category_string"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fav_link"
+            style="@style/header_text"
+            android:layout_width="60dp"
+            android:background="@drawable/lt_category"
+            android:text="@string/link_string"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -54,7 +59,8 @@
             android:id="@+id/fav_favourite"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@color/show_cl"
+            android:padding="3dp"
+            android:background="@drawable/it_like"
             android:src="@drawable/ic_hearth_full"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -77,10 +83,6 @@
         <TextView
             android:id="@+id/fav_price_undrln"
             style="@style/underline_text"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center"
             android:text="@string/price_string"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -101,10 +103,6 @@
         <TextView
             android:id="@+id/fav_participants_undrln"
             style="@style/underline_text"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center"
             android:text="@string/participants_string"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/fav_price_undrln"
@@ -126,10 +124,6 @@
         <TextView
             android:id="@+id/fav_accessibility_undrln"
             style="@style/underline_text"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center"
             android:text="@string/accessibility_string"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/fav_participants_undrln"

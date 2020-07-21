@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#6E49E3</color>
-    <color name="main_bg">#424242</color>
-    <color name="second_bg">#B5B5B5</color>
-    <color name="show_cl">#DC366A</color>
+    //light
+    <color name="colorPrimary">#9C9C9C</color>
+    <color name="colorPrimaryDark">#4C4C4C</color>
+    <color name="colorAccent">#6C6C6C</color>
+    <color name="backgroundColor">#FFFFFF</color>
+
+    //dark
+    <color name="dark_colorPrimary">#1C1C1C</color>
+    <color name="dark_colorPrimaryDark">#171717</color>
+    <color name="dark_colorAccent">#000000</color>
+    <color name="dark_backgroundColor">#373737</color>
+
+    <color name="bottom_navigation_bar">#1C1C1C</color>
+    <color name="bottom_navigation_bar_text">#707070</color>
+    <color name="bottom_navigation_bar_icon">#707070</color>
+
+    <color name="Card">#FFFFFF</color>
+
+    <color name="ColorMain">#697FF6</color>
+    <color name="ColorFirst">#DC366A</color>
+    <color name="ColorSecond">#467BFF</color>
+    <color name="black">@android:color/black</color>
+    <color name="white">@android:color/white</color>
 </resources>

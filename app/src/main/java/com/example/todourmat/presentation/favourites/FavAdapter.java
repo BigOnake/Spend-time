@@ -1,5 +1,7 @@
 package com.example.todourmat.presentation.favourites;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,9 +53,10 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder {
         ConstraintLayout layout;
         ArrayList<BoredAction> list;
-
-        private TextView favMainText, favCategory, favPrice;
-        private ImageView favParticipants, favAccessibility, favFavourites;
+        private TextView favMainText, favCategory, favPrice, favLink;
+        private ImageView favParticipants;
+        private ImageView favAccessibility;
+        private String mLink;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,22 +69,45 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
             favParticipants = itemView.findViewById(R.id.fav_person);
             favAccessibility = itemView.findViewById(R.id.fav_access);
             favCategory = itemView.findViewById(R.id.fav_category);
-            favFavourites = itemView.findViewById(R.id.fav_favourite);
-            favFavourites.setOnClickListener((new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onItemClickListener.CardID(getAdapterPosition());
-                    Log.d("ololo", "CHECK");
-                }
+            ImageView favFavourites = itemView.findViewById(R.id.fav_favourite);
+            favLink = itemView.findViewById(R.id.fav_link);
+
+            favLink.setOnClickListener(v -> goToURI());
+
+            favFavourites.setOnClickListener((v -> {
+                onItemClickListener.CardID(getAdapterPosition());
+                Log.d("ololo", "CHECK");
             }));
         }
 
         public void onBind(BoredAction boredAction) {
             favMainText.setText(boredAction.getActivity());
-            favCategory.setText(boredAction.getType());
+            if (boredAction.getType() != null) {
+                favCategory.setText(boredAction.getType());
+            } else {
+                favCategory.setText(R.string.random);
+            }
             priceFilter(boredAction);
             accessFilter(boredAction);
             participantsFilter(boredAction);
+            linkFilter(boredAction);
+        }
+
+        public void goToURI() {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setData(Uri.parse(mLink));
+            itemView.getContext().startActivity(intent);
+        }
+
+        private void linkFilter(BoredAction boredAction) {
+            if (boredAction.getLink().equals("")) {
+                favLink.setVisibility(View.GONE);
+            } else {
+                favLink.setVisibility(View.VISIBLE);
+                mLink = boredAction.getLink();
+            }
         }
 
         private void priceFilter(BoredAction boredAction) {

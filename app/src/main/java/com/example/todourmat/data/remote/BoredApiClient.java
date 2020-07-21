@@ -19,12 +19,13 @@ public class BoredApiClient {
 
     BoredApi client = retrofit.create(BoredApi.class);
 
-    public void getAction(String key, Integer participants, String type, Float minPrice, Float maxPrice,
+    public void getAction(String key, Integer participants, String link, String type, Float minPrice, Float maxPrice,
                           Float minAccessibility, Float maxAccessibility, BoredActionCallback callback) {
 
         Call<BoredAction> call = client.getAction(
                 key,
                 participants,
+                link,
                 type,
                 minPrice,
                 maxPrice,
@@ -58,6 +59,7 @@ public class BoredApiClient {
         Call<BoredAction> getAction(
                 @Query("key") String key,
                 @Query("participants") Integer participants,
+                @Query("link") String link,
                 @Query("type") String type,
                 @Query("minprice") Float minPrice,
                 @Query("maxprice") Float maxPrice,

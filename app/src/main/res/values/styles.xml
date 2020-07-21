@@ -3,33 +3,74 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#424242</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/main_bg</item>
+        <item name="android:windowBackground">@color/backgroundColor</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
-    <style name="BaseText">
-        <item name="android:includeFontPadding">false</item>
+    <style name="DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/dark_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/dark_colorPrimaryDark</item>
+        <item name="colorAccent">@color/dark_colorAccent</item>
+        <item name="android:windowBackground">@color/dark_backgroundColor</item>
     </style>
-    
+
     <style name="presentational_text">
         <item name="textAllCaps">false</item>
-        <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <style name="action_text_main">
         <item name="textAllCaps">false</item>
-        <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
+    <style name="above_text">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    //Requirements
     <style name="underline_text">
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="textAllCaps">false</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    //Header
+    <style name="header_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_height">30dp</item>
+    </style>
+
+    //seekBar
+    <style name="seek_bar">
+        <item name="android:layout_width">170dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="bar_color">@color/Card</item>
+        <item name="bar_highlight_color">@color/ColorSecond</item>
+        <item name="corner_radius">5</item>
+        <item name="data_type">_float</item>
+        <item name="left_thumb_color">@color/ColorMain</item>
+        <item name="left_thumb_color_pressed">@color/ColorMain</item>
+        <item name="right_thumb_color">@color/ColorMain</item>
+        <item name="right_thumb_color_pressed">@color/ColorMain</item>
     </style>
 
 </resources>
