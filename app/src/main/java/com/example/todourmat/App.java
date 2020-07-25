@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.room.Room;
 
 import com.example.todourmat.data.AppPreferences;
+import com.example.todourmat.data.BoredRepository;
 import com.example.todourmat.data.remote.BoredApiClient;
 import com.example.todourmat.data.db.BoredDataBase;
 import com.example.todourmat.data.local.BoredStorage;
@@ -12,15 +13,14 @@ import com.example.todourmat.data.local.BoredStorage;
 public class App extends Application {
 
     public static AppPreferences appPreferences;
-    public static BoredApiClient boredApiClient;
-    public static BoredDataBase boredDataBase;
-    public static BoredStorage boredStorage;
+
+    public static BoredRepository boredRepository;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        boredDataBase = Room.databaseBuilder(
+        BoredDataBase boredDataBase = Room.databaseBuilder(
                 this,
                 BoredDataBase.class,
                 "bored.db"
@@ -28,8 +28,9 @@ public class App extends Application {
                 .allowMainThreadQueries()
                 .build();
 
-        boredStorage = new BoredStorage(boredDataBase.boredDao());
         appPreferences = new AppPreferences(this);
-        boredApiClient = new BoredApiClient();
+        BoredStorage boredStorage = new BoredStorage(boredDataBase.boredDao());
+        BoredApiClient boredApiClient = new BoredApiClient();
+        boredRepository = new BoredRepository(boredStorage, boredApiClient);
     }
 }

@@ -61,7 +61,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             list = new ArrayList<>();
-            list.addAll(App.boredStorage.getAllActions());
+            list.addAll(App.boredRepository.getAllActions());
             layout = itemView.findViewById(R.id.layout);
             favMainText = itemView.findViewById(R.id.fav_main_text);
             favCategory = itemView.findViewById(R.id.fav_category);

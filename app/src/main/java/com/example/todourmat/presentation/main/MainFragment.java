@@ -27,11 +27,8 @@ public class MainFragment extends Fragment {
 
     private TextView mainText, category, price, link;
     private Spinner spinnerType;
-    private String valueOfSpinner = "random";
-    private String nullType = null;
-    private String mLink;
-    private CrystalRangeSeekbar seekbar1;
-    private CrystalRangeSeekbar seekbar2;
+    private String valueOfSpinner = "random", nullType = null, mLink;
+    private CrystalRangeSeekbar seekbar1, seekbar2;
     private ImageView participants, accessibility, favourite;
     private Float maxPrice, minPrice, maxAccessibility, minAccessibility;
     private boolean is_photo = true;
@@ -60,26 +57,23 @@ public class MainFragment extends Fragment {
 
         question();
 
-        favourite.setOnClickListener(v12 -> MainFragment.this.favouriteStatus());
-
+        favourite.setOnClickListener(v12 -> favouriteStatus());
         nextBtn.setOnClickListener(v1 -> {
             Log.d("ololo", "click должно работать");
             question();
-            favouriteFilter();
         });
-
         link.setOnClickListener(v13 -> goToURI());
 
         return v;
     }
 
     private void question() {
-        App.boredApiClient.getAction(null, null, null, nullType,
+        App.boredRepository.getAction(null, null, null, nullType,
                 minPrice, maxPrice, minAccessibility, maxAccessibility,
                 new BoredApiClient.BoredActionCallback() {
                     @Override
                     public void onSuccess(BoredAction boredAction) {
-                        for (BoredAction action : App.boredStorage.getAllActions()) {
+                        for (BoredAction action : App.boredRepository.getAllActions()) {
                             Log.d("ololo", action.toString());
                         }
                         Log.i("ololo", "Receive " + boredAction.toString());
@@ -90,9 +84,9 @@ public class MainFragment extends Fragment {
                         accessFilter(boredAction);
                         priceFilter(boredAction);
                         linkFilter(boredAction);
-
                         mBoredAction = boredAction;
                     }
+
                     @Override
                     public void onFailure(Exception ex) {
                     }
@@ -130,7 +124,6 @@ public class MainFragment extends Fragment {
         }
         nullType = boredAction.getType();
         category.setText(valueOfSpinner);
-        //category.setText(nullType);
     }
 
     private void linkFilter(BoredAction boredAction) {
@@ -165,10 +158,10 @@ public class MainFragment extends Fragment {
             if (boredAction.getPrice() == 0.1f) {
                 price.setText("$");
             }
-            if (boredAction.getPrice() >= 0.2f && boredAction.getPrice() <= 0.3f) {
+            if (boredAction.getPrice() >= 0.2f && boredAction.getPrice() <= 0.5f) {
                 price.setText("$$");
             }
-            if (boredAction.getPrice() >= 0.4f && boredAction.getPrice() <= 0.5f) {
+            if (boredAction.getPrice() >= 0.6f && boredAction.getPrice() <= 0.8f) {
                 price.setText("$$$");
             }
         }
@@ -208,20 +201,17 @@ public class MainFragment extends Fragment {
     private void favouriteStatus() {
         if (is_photo) {
             favourite.setImageResource(R.drawable.ic_hearth_full);
-            App.boredStorage.saveBoredAction(mBoredAction);
+            App.boredRepository.saveBoredAction(mBoredAction);
         } else {
             favourite.setImageResource(R.drawable.ic_hearth);
-            App.boredStorage.deleteBoredAction(mBoredAction);
+            App.boredRepository.deleteBoredAction(mBoredAction);
         }
         is_photo = !is_photo;
     }
 
-    private void favouriteFilter() {
-        if (!is_photo) {
-            favourite.setImageResource(R.drawable.ic_hearth);
-        } else {
-            favourite.setImageResource(R.drawable.ic_hearth_full);
-        }
-    }
+    @Override
+    public void onPause() {super.onPause();}
 
+    @Override
+    public void onResume() {super.onResume();}
 }

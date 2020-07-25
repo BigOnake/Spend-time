@@ -4,7 +4,7 @@ import com.example.todourmat.model.BoredAction;
 
 import java.util.List;
 
-public class BoredStorage {
+public class BoredStorage implements IBoredStorage{
 
     private BoredDao dao;
 

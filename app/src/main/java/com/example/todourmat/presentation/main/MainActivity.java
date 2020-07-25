@@ -7,10 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.todourmat.R;
@@ -20,8 +17,6 @@ import com.example.todourmat.presentation.favourites.FavouritesFragment;
 import com.example.todourmat.presentation.intro.IntroActivity;
 import com.example.todourmat.presentation.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 

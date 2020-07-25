@@ -44,7 +44,7 @@ public class FavouritesFragment extends Fragment{
         recyclerView.setAdapter(favAdapter);
 
         favAdapter.setOnItemClickListener(pos -> {
-            App.boredStorage.deleteBoredAction(list.get(pos));
+            App.boredRepository.deleteBoredAction(list.get(pos));
             loadData();
         });
 
@@ -53,7 +53,7 @@ public class FavouritesFragment extends Fragment{
 
     public void loadData() {
         list.clear();
-        list.addAll(App.boredStorage.getAllActions());
+        list.addAll(App.boredRepository.getAllActions());
         Collections.reverse(list);
         Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
     }
