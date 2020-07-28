@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    //light
-    <color name="colorPrimary">#9C9C9C</color>
-    <color name="colorPrimaryDark">#4C4C4C</color>
-    <color name="colorAccent">#6C6C6C</color>
-    <color name="backgroundColor">#FFFFFF</color>
 
     //dark
-    <color name="dark_colorPrimary">#1C1C1C</color>
-    <color name="dark_colorPrimaryDark">#171717</color>
-    <color name="dark_colorAccent">#000000</color>
-    <color name="dark_backgroundColor">#373737</color>
-
-    <color name="bottom_navigation_bar">#1C1C1C</color>
-    <color name="bottom_navigation_bar_text">#707070</color>
-    <color name="bottom_navigation_bar_icon">#707070</color>
-
-    <color name="Card">#FFFFFF</color>
+    <color name="dark_colorPrimary">#000000</color>
+    <color name="dark_colorPrimaryDark">#000000</color>
+    <color name="dark_colorAccent">#7C7C7C</color>
+    <color name="dark_backgroundColor">#101010</color>
+    <color name="dark_cardColor">#393939</color>
+    <color name="dark_spinner_color">#373737</color>
+    <color name="dark_text_color">#FFFFFF</color>
+    <color name="dark_bottom_navigation_bar">#000000</color>
+    <color name="dark_bottom_navigation_bar_text">#707070</color>
+    <color name="dark_bottom_navigation_bar_icon">#707070</color>
 
     <color name="ColorMain">#697FF6</color>
     <color name="ColorFirst">#DC366A</color>

@@ -55,7 +55,7 @@ public class IntroActivity extends AppCompatActivity {
                     btnNext.setVisibility(View.GONE);
                     btnSkip.setText("Start");
                 } else {
-                    btnSkip.setText("skip");
+                    btnSkip.setText("Skip");
                     btnNext.setVisibility(View.VISIBLE);
                 }
             }

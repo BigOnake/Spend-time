@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -55,42 +57,47 @@ public class MainFragment extends Fragment {
         favourite = v.findViewById(R.id.favourite);
         price = v.findViewById(R.id.price);
 
-        question();
+        question(false);
 
         favourite.setOnClickListener(v12 -> favouriteStatus());
         nextBtn.setOnClickListener(v1 -> {
             Log.d("ololo", "click должно работать");
-            question();
+            question(false);
         });
         link.setOnClickListener(v13 -> goToURI());
 
         return v;
     }
 
-    private void question() {
-        App.boredRepository.getAction(null, null, null, nullType,
-                minPrice, maxPrice, minAccessibility, maxAccessibility,
-                new BoredApiClient.BoredActionCallback() {
-                    @Override
-                    public void onSuccess(BoredAction boredAction) {
-                        for (BoredAction action : App.boredRepository.getAllActions()) {
-                            Log.d("ololo", action.toString());
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void question(Boolean fromCache) {
+            App.boredRepository.getAction(fromCache,null, null, null, nullType,
+                    minPrice, maxPrice, minAccessibility, maxAccessibility, new BoredApiClient.BoredActionCallback() {
+                        @Override
+                        public void onSuccess(BoredAction boredAction) {
+                            renderAction(boredAction);
+                            for (BoredAction action : App.boredRepository.getAllActions()) {
+                                Log.d("ololo", action.toString());
+                            }
+                            Log.i("ololo", "Receive " + boredAction.toString());
+
+                            categoryFilter(boredAction);
+                            activityFilter(boredAction);
+                            participantsFilter(boredAction);
+                            accessFilter(boredAction);
+                            priceFilter(boredAction);
+                            linkFilter(boredAction);
+                            mBoredAction = boredAction;
                         }
-                        Log.i("ololo", "Receive " + boredAction.toString());
 
-                        categoryFilter(boredAction);
-                        activityFilter(boredAction);
-                        participantsFilter(boredAction);
-                        accessFilter(boredAction);
-                        priceFilter(boredAction);
-                        linkFilter(boredAction);
-                        mBoredAction = boredAction;
-                    }
-
-                    @Override
-                    public void onFailure(Exception ex) {
-                    }
-                });
+                        @Override
+                        public void onFailure(Exception ex) {
+                        }
+                    });
     }
 
     private void activityFilter(BoredAction boredAction) {
@@ -124,25 +131,6 @@ public class MainFragment extends Fragment {
         }
         nullType = boredAction.getType();
         category.setText(valueOfSpinner);
-    }
-
-    private void linkFilter(BoredAction boredAction) {
-        if (boredAction.getLink() != null) {
-            if (boredAction.getLink().equals("")) {
-                link.setVisibility(View.GONE);
-            } else {
-                link.setVisibility(View.VISIBLE);
-                mLink = boredAction.getLink();
-            }
-        }
-    }
-
-    public void goToURI() {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(mLink));
-        startActivity(intent);
     }
 
     private void priceFilter(BoredAction boredAction) {
@@ -198,6 +186,25 @@ public class MainFragment extends Fragment {
         }
     }
 
+    private void linkFilter(BoredAction boredAction) {
+        if (boredAction.getLink() != null) {
+            if (boredAction.getLink().equals("")) {
+                link.setVisibility(View.GONE);
+            } else {
+                link.setVisibility(View.VISIBLE);
+                mLink = boredAction.getLink();
+            }
+        }
+    }
+
+    public void goToURI() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(mLink));
+        startActivity(intent);
+    }
+
     private void favouriteStatus() {
         if (is_photo) {
             favourite.setImageResource(R.drawable.ic_hearth_full);
@@ -209,9 +216,17 @@ public class MainFragment extends Fragment {
         is_photo = !is_photo;
     }
 
-    @Override
-    public void onPause() {super.onPause();}
+    private void renderAction(BoredAction boredAction){
+       if (boredAction.getSaved()){
+           favourite.setImageResource(R.drawable.ic_hearth_full);
+       }else{
+           favourite.setImageResource(R.drawable.ic_hearth);
+       }
+    }
 
     @Override
-    public void onResume() {super.onResume();}
+    public void onResume() {
+        super.onResume();
+        question(true);
+    }
 }

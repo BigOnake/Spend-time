@@ -19,10 +19,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/menu"
-        app:itemTextColor="@color/bottom_navigation_bar_text"
-        android:background="@color/bottom_navigation_bar"
-        app:itemIconTint="@color/bottom_navigation_bar_icon"
+        app:itemTextColor="?attr/BNB_text_color"
+        android:background="?attr/BNB_color"
+        app:itemIconTint="?attr/BNB_icon_color"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/color_theme_btn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_color_theme"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:visibility="gone"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchCompat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="Change Theme"
+        android:textSize="25sp"
+        android:textColor="@color/dark_text_color"
+        android:outlineAmbientShadowColor="@color/ColorMain"
+        android:foregroundTint="@color/dark_colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/color_theme_btn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

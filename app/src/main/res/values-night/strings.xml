@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Leisure Helper</string>
 
-    <string name="text">Dark Mode</string>
+    <string name="text">Light Mode</string>
 
     <string-array name="Type">
         <item>random</item>

@@ -3,6 +3,7 @@ package com.example.todourmat.model;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
@@ -39,6 +40,9 @@ public class BoredAction {
     @SerializedName("accessibility")
     @ColumnInfo(name = "accessibility")
     private Float accessibility;
+
+    @Ignore
+    private Boolean isSaved = false;
 
     public BoredAction( @NonNull String key, String activity, String type, String link, Float accessibility, Float price, Integer participants) {
         this.key = key;
@@ -104,6 +108,14 @@ public class BoredAction {
 
     public void setParticipants(Integer participants) {
         this.participants = participants;
+    }
+
+    public Boolean getSaved() {
+        return isSaved;
+    }
+
+    public void setSaved(Boolean saved) {
+        isSaved = saved;
     }
 
     @Override
