@@ -51,20 +51,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <com.like.LikeButton
             android:id="@+id/favourite"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:padding="3dp"
-            android:background="@drawable/it_like"
-            android:contentDescription="@string/favourites_description_string"
-            android:src="@drawable/ic_hearth"
+            app:icon_size="25dp"
+            app:icon_type="heart"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--
-                ______________________________________________
-        -->
 
         <TextView
             android:id="@+id/price"

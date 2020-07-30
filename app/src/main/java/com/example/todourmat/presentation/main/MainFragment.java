@@ -24,6 +24,8 @@ import com.example.todourmat.App;
 import com.example.todourmat.R;
 import com.example.todourmat.data.remote.BoredApiClient;
 import com.example.todourmat.model.BoredAction;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 
 public class MainFragment extends Fragment {
 
@@ -31,7 +33,8 @@ public class MainFragment extends Fragment {
     private Spinner spinnerType;
     private String valueOfSpinner = "random", nullType = null, mLink;
     private CrystalRangeSeekbar seekbar1, seekbar2;
-    private ImageView participants, accessibility, favourite;
+    private ImageView participants, accessibility;
+    private LikeButton favourite;
     private Float maxPrice, minPrice, maxAccessibility, minAccessibility;
     private boolean is_photo = true;
     BoredAction mBoredAction;
@@ -207,20 +210,21 @@ public class MainFragment extends Fragment {
 
     private void favouriteStatus() {
         if (is_photo) {
-            favourite.setImageResource(R.drawable.ic_hearth_full);
+            favourite.setLiked(true);
             App.boredRepository.saveBoredAction(mBoredAction);
         } else {
-            favourite.setImageResource(R.drawable.ic_hearth);
+            favourite.setLiked(false);
             App.boredRepository.deleteBoredAction(mBoredAction);
         }
         is_photo = !is_photo;
     }
 
     private void renderAction(BoredAction boredAction){
-       if (boredAction.getSaved()){
-           favourite.setImageResource(R.drawable.ic_hearth_full);
+        Boolean isSaved = App.boredRepository.getBoredAction(boredAction.getKey()) != null;
+       if (isSaved){
+           favourite.setLiked(true);
        }else{
-           favourite.setImageResource(R.drawable.ic_hearth);
+           favourite.setLiked(false);
        }
     }
 

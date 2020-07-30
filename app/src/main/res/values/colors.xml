@@ -13,6 +13,9 @@
     <color name="dark_bottom_navigation_bar_text">#707070</color>
     <color name="dark_bottom_navigation_bar_icon">#707070</color>
 
+    <color name="colorPrimary">#FF6D00</color>
+    <color name="colorAccent">#FFC800</color>
+
     <color name="ColorMain">#697FF6</color>
     <color name="ColorFirst">#DC366A</color>
     <color name="ColorSecond">#467BFF</color>

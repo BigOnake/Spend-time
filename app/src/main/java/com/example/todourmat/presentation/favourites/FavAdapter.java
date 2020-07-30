@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.todourmat.App;
 import com.example.todourmat.R;
 import com.example.todourmat.model.BoredAction;
+import com.like.LikeButton;
 
 import java.util.ArrayList;
 
@@ -69,7 +70,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
             favParticipants = itemView.findViewById(R.id.fav_person);
             favAccessibility = itemView.findViewById(R.id.fav_access);
             favCategory = itemView.findViewById(R.id.fav_category);
-            ImageView favFavourites = itemView.findViewById(R.id.fav_favourite);
+            LikeButton favFavourites = itemView.findViewById(R.id.fav_favourite);
             favLink = itemView.findViewById(R.id.fav_link);
 
             favLink.setOnClickListener(v -> goToURI());
